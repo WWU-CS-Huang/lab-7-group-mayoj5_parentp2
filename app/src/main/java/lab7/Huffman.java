@@ -25,6 +25,12 @@ public class Huffman {
             return;
         }
         String inputString = readFile(input);
+
+        HashTable<Character, Integer> frequencyMap = frequencyCount(inputString);
+        Heap<Node, Integer> leafHeap = leafHeap(frequencyMap);
+        Node rootTree = buildHuffmanTree(leafHeap);
+        makeHashMaps(rootTree);
+
         String encodedString = encodeString(inputString);
         String decodedString = decodeString(encodedString);
 
@@ -83,7 +89,7 @@ public class Huffman {
         return frequencyTable;
     }
 
-    public Heap<Node, Integer> leafHeap(HashTable<Character, Integer> frequency){
+    public static Heap<Node, Integer> leafHeap(HashTable<Character, Integer> frequency){
         Heap<Node, Integer> output = new Heap<Node, Integer>();
 
         //makes leaf node for every character found in string
@@ -93,10 +99,10 @@ public class Huffman {
         }
         return output;
     }
-    public void makeHashMaps(Node tree){
+    public static void makeHashMaps(Node tree){
         makeHashMaps(tree, "");
     }
-    public void makeHashMaps(Node tree, String prefix){
+    public static void makeHashMaps(Node tree, String prefix){
         if(tree == null){
             return;
         }
@@ -109,7 +115,7 @@ public class Huffman {
         }
     }
 
-    public Node buildHuffmanTree(Heap<Node, Integer> heap) {
+    public static Node buildHuffmanTree(Heap<Node, Integer> heap) {
         while (heap.size() > 1) {
             Node left = heap.poll();
             Node right = heap.poll();
