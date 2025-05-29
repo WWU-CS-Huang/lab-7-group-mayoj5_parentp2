@@ -1,15 +1,17 @@
 package lab7;
 import heap.*;
-import avl.*;
 
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class Huffman {
 
     HashTable<String, Character> encodeMap = new HashTable<String, Character>();
     HashTable<Character, String> decodeMap = new HashTable<Character, String>();
+
+    static ArrayList<Character> characterList = new ArrayList<Character>();
 
     public static void main(String[] args){
         String fileName = args[0];
@@ -51,6 +53,9 @@ public class Huffman {
             Integer existing = frequencyTable.get(c);
             if(existing == null){
                 frequencyTable.put(c, 1);
+                //whenever this is called, new character is found. put into characterlist
+                characterList.add(c);
+
             } else {
                 frequencyTable.put(c, existing + 1);
             }
