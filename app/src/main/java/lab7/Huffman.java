@@ -39,6 +39,15 @@ public class Huffman {
         
     }
 
+    public static String encodeString(String inputString) {
+        String returnString = "";
+        
+        for (int i=0; i<inputString.length(); i++) {
+
+        }
+        return returnString;
+    }
+
     public static String readFile(Scanner input) {
         String output = "";
         while (input.hasNextLine()) {
