@@ -42,7 +42,6 @@ public class Huffman {
         return output;
     }
 
-    public class Node {
     public static HashTable<Character, Integer> frequencyCount(String input){
         HashTable<Character, Integer> frequencyTable = new HashTable<Character, Integer>(17);
         for(char c : input.toCharArray()){
