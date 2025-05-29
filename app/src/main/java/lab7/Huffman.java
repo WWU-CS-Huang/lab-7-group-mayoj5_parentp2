@@ -25,17 +25,17 @@ public class Huffman {
             return;
         }
         String inputString = readFile(input);
-        //String encodedString = encodeString(inputString);
-        //String decodedString = decodeString(encodedString);
+        String encodedString = encodeString(inputString);
+        String decodedString = decodeString(encodedString);
 
         // Print results
         if (inputString.length() < 100) {
             System.out.println("Input string: " + inputString);
-            //System.out.println("Encoded string: " + encodedString);
-            //System.out.println("Decoded string: " + decodedString);
+            System.out.println("Encoded string: " + encodedString);
+            System.out.println("Decoded string: " + decodedString);
         }
-        //System.out.println("Decoded equals input: " + encodedString.equals(decodedString));
-        //System.out.println("Compression ratio: " + encodedString.length()/inputString.length()/8.0);
+        System.out.println("Decoded equals input: " + encodedString.equals(decodedString));
+        System.out.println("Compression ratio: " + encodedString.length()/inputString.length()/8.0);
         
     }
 
