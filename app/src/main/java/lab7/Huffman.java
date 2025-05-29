@@ -63,10 +63,20 @@ public class Huffman {
         return frequencyTable;
     }
 
-    public Heap<Node, Integer> leafHeap(HashTable<Character, Integer> input){
-        return new Heap<Node, Integer>();
+    public Heap<Node, Integer> leafHeap(HashTable<Character, Integer> frequency){
+        Heap<Node, Integer> output = new Heap<Node, Integer>();
+
+        //makes leaf node for every character found in string
+        for(int i = 0; i < characterList.size(); i++){
+            Node node = new Node(characterList.get(i));
+            output.add(node, frequency.get(characterList.get(i)));
+        }
+
+        return output;
     }
 
+
+    //
 
     public static class Node {
         public char character;
