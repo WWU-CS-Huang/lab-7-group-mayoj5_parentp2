@@ -55,7 +55,18 @@ public class Huffman {
         }
         return output;
     }
+    public static String decodeString(String encoded){
+        String output = "";
+        while(encoded.length() > 0){
+            int end = 1;
+            while(!decodeMap.containsKey(encoded.substring(0,end))){
+                end++;
+            }
+            output += decodeMap.get(encoded.substring(0,end));
 
+        }
+        return output;
+    }
     public static HashTable<Character, Integer> frequencyCount(String input){
         HashTable<Character, Integer> frequencyTable = new HashTable<Character, Integer>(17);
         for(char c : input.toCharArray()){
