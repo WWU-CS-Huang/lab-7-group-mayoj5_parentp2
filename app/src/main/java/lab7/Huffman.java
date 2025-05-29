@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class Huffman {
 
-    HashTable<String, Character> encodeMap = new HashTable<String, Character>();
-    HashTable<Character, String> decodeMap = new HashTable<Character, String>();
+    static HashTable<String, Character> decodeMap = new HashTable<String, Character>();
+    static HashTable<Character, String> encodeMap = new HashTable<Character, String>();
 
     static ArrayList<Character> characterList = new ArrayList<Character>();
 
@@ -90,8 +90,8 @@ public class Huffman {
             return;
         }
         if(tree.left == null && tree.right == null){
-            encodeMap.put(prefix, tree.character);
-            decodeMap.put(tree.character, prefix);
+            decodeMap.put(prefix, tree.character);
+            encodeMap.put(tree.character, prefix);
         } else {
             makeHashMaps(tree.left, "0");
             makeHashMaps(tree.right, "1");
