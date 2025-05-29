@@ -68,7 +68,7 @@ public class Huffman {
 
         //makes leaf node for every character found in string
         for(int i = 0; i < characterList.size(); i++){
-            Node node = new Node(characterList.get(i));
+            Node node = new Node(characterList.get(i), frequency.get(characterList.get(i)));
             output.add(node, frequency.get(characterList.get(i)));
         }
         return output;
