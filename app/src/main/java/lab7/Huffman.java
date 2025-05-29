@@ -68,6 +68,7 @@ public class Huffman {
                 end++;
             }
             output += decodeMap.get(encoded.substring(0,end));
+            encoded = encoded.substring(end);
 
         }
         return output;
@@ -109,8 +110,8 @@ public class Huffman {
             decodeMap.put(prefix, tree.character);
             encodeMap.put(tree.character, prefix);
         } else {
-            makeHashMaps(tree.left, "0");
-            makeHashMaps(tree.right, "1");
+            makeHashMaps(tree.left, prefix + "0");
+            makeHashMaps(tree.right, prefix + "1");
         }
     }
 
