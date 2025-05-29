@@ -25,17 +25,23 @@ public class Huffman {
             return;
         }
         String inputString = readFile(input);
-        //String encodedString = encodeString(inputString);
-        //String decodedString = decodeString(encodedString);
+
+        HashTable<Character, Integer> frequencyMap = frequencyCount(inputString);
+        Heap<Node, Integer> leafHeap = leafHeap(frequencyMap);
+        Node rootTree = buildHuffmanTree(leafHeap);
+        makeHashMaps(rootTree);
+
+        String encodedString = encodeString(inputString);
+        String decodedString = decodeString(encodedString);
 
         // Print results
         if (inputString.length() < 100) {
             System.out.println("Input string: " + inputString);
-            //System.out.println("Encoded string: " + encodedString);
-            //System.out.println("Decoded string: " + decodedString);
+            System.out.println("Encoded string: " + encodedString);
+            System.out.println("Decoded string: " + decodedString);
         }
-        //System.out.println("Decoded equals input: " + encodedString.equals(decodedString));
-        //System.out.println("Compression ratio: " + encodedString.length()/inputString.length()/8.0);
+        System.out.println("Decoded equals input: " + encodedString.equals(decodedString));
+        System.out.println("Compression ratio: " + encodedString.length()/inputString.length()/8.0);
         
     }
 
@@ -54,7 +60,18 @@ public class Huffman {
         }
         return output;
     }
+    public static String decodeString(String encoded){
+        String output = "";
+        while(encoded.length() > 0){
+            int end = 1;
+            while(!decodeMap.containsKey(encoded.substring(0,end))){
+                end++;
+            }
+            output += decodeMap.get(encoded.substring(0,end));
 
+        }
+        return output;
+    }
     public static HashTable<Character, Integer> frequencyCount(String input){
         HashTable<Character, Integer> frequencyTable = new HashTable<Character, Integer>(17);
         for(char c : input.toCharArray()){
@@ -71,7 +88,7 @@ public class Huffman {
         return frequencyTable;
     }
 
-    public Heap<Node, Integer> leafHeap(HashTable<Character, Integer> frequency){
+    public static Heap<Node, Integer> leafHeap(HashTable<Character, Integer> frequency){
         Heap<Node, Integer> output = new Heap<Node, Integer>();
 
         //makes leaf node for every character found in string
@@ -81,10 +98,10 @@ public class Huffman {
         }
         return output;
     }
-    public void makeHashMaps(Node tree){
+    public static void makeHashMaps(Node tree){
         makeHashMaps(tree, "");
     }
-    public void makeHashMaps(Node tree, String prefix){
+    public static void makeHashMaps(Node tree, String prefix){
         if(tree == null){
             return;
         }
@@ -97,7 +114,7 @@ public class Huffman {
         }
     }
 
-    public Node buildHuffmanTree(Heap<Node, Integer> heap) {
+    public static Node buildHuffmanTree(Heap<Node, Integer> heap) {
         while (heap.size() > 1) {
             Node left = heap.poll();
             Node right = heap.poll();
