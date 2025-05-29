@@ -71,8 +71,22 @@ public class Huffman {
             Node node = new Node(characterList.get(i));
             output.add(node, frequency.get(characterList.get(i)));
         }
-
         return output;
+    }
+    public void makeHashMaps(Node tree){
+        makeHashMaps(tree, "");
+    }
+    public void makeHashMaps(Node tree, String prefix){
+        if(tree == null){
+            return;
+        }
+        if(tree.left == null && tree.right == null){
+            encodeMap.put(prefix, tree.character);
+            decodeMap.put(tree.character, prefix);
+        } else {
+            makeHashMaps(tree.left, "0");
+            makeHashMaps(tree.right, "1");
+        }
     }
 
 
