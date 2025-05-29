@@ -41,9 +41,8 @@ public class Huffman {
 
     public static String encodeString(String inputString) {
         String returnString = "";
-        
-        for (int i=0; i<inputString.length(); i++) {
-
+        for (int i = 0; i < inputString.length(); i++) {
+            returnString += encodeMap.get(inputString.charAt(i));
         }
         return returnString;
     }
