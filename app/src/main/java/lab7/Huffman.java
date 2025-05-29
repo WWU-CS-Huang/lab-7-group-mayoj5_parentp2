@@ -1,4 +1,5 @@
 package lab7;
+import heap.Heap;
 
 import java.util.Scanner;
 
