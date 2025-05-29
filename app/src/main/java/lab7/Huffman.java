@@ -2,10 +2,40 @@ package lab7;
 import heap.Heap;
 
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Huffman {
     public static void main(String[] args){
+        String fileName = args[0];
+        File file = new File(fileName);
+        Scanner input;
+
+        try {
+            input = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
+        String inputString = readFile(input);
+
+
+
+        // Print results
+        System.out.println("Input string: ");
+        System.out.println("Encoded string: ");
+        System.out.println("Decoded string: ");
+        System.out.println("Decoded equals input: ");
+        System.out.println("Compression ratio: ");
         
+    }
+
+    public static String readFile(Scanner input) {
+        String output = "";
+        while (input.hasNextLine()) {
+            output += input.nextLine();
+        }
+        return output;
     }
 
     public class Node {
@@ -20,7 +50,6 @@ public class Huffman {
         }
 
         public Node(Node newLeft, Node newRight) {
-            character = null;
             right = newRight;
             left = newLeft;
         }
