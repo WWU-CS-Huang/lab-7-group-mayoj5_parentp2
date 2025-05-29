@@ -41,7 +41,7 @@ public class Huffman {
             System.out.println("Decoded string: " + decodedString);
         }
         System.out.println("Decoded equals input: " + encodedString.equals(decodedString));
-        System.out.println("Compression ratio: " + encodedString.length()/inputString.length()/8.0);
+        System.out.println("Compression ratio: " + (double)encodedString.length()/inputString.length()/8.0);
         
     }
 
