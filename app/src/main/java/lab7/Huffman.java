@@ -1,5 +1,6 @@
 package lab7;
 import heap.*;
+import avl.*;
 
 import java.util.Scanner;
 import java.io.File;
@@ -54,6 +55,11 @@ public class Huffman {
         }
         return frequencyTable;
     }
+
+    public Heap<Node, Integer> leafHeap(HashTable<Character, Integer> input){
+        return new Heap<Node, Integer>();
+    }
+
 
     public static class Node {
         public char character;
