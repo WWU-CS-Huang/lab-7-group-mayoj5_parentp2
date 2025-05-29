@@ -89,6 +89,15 @@ public class Huffman {
         }
     }
 
+    public Node buildHuffmanTree(Heap<Node, Integer> heap) {
+        while (heap.size() > 1) {
+            Node left = heap.poll();
+            Node right = heap.poll();
+            Node newNode = new Node(left, right, left.frequency + right.frequency);
+            heap.add(newNode, left.frequency + right.frequency);
+        }
+        return heap.poll();
+    }
 
     //
 
@@ -96,16 +105,19 @@ public class Huffman {
         public char character;
         public Node right;
         public Node left;
+        public int frequency;
 
-        public Node(char newCharacter) {
+        public Node(char newCharacter, int newFrequency) {
             character = newCharacter;
             right = null;
             left = null;
+            frequency = newFrequency;
         }
 
-        public Node(Node newLeft, Node newRight) {
+        public Node(Node newLeft, Node newRight, int newFrequency) {
             right = newRight;
             left = newLeft;
+            frequency = newFrequency;
         }
     }
 
