@@ -40,7 +40,7 @@ public class Huffman {
             System.out.println("Encoded string: " + encodedString);
             System.out.println("Decoded string: " + decodedString);
         }
-        System.out.println("Decoded equals input: " + encodedString.equals(decodedString));
+        System.out.println("Decoded equals input: " + inputString.equals(decodedString));
         System.out.println("Compression ratio: " + (double)encodedString.length()/inputString.length()/8.0);
         
     }
