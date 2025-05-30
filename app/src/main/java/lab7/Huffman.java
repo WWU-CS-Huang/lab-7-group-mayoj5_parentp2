@@ -13,6 +13,10 @@ public class Huffman {
 
     static ArrayList<Character> characterList = new ArrayList<Character>();
 
+    /** Main method.
+     * Takes a txt file as an argument, scans it, builds a Huffman tree with a encodeMap and decodeMap,
+     * encodes it, then decodes it and prints the results if the string has less than 100 characters.
+     */
     public static void main(String[] args){
         String fileName = args[0];
         File file = new File(fileName);
@@ -45,6 +49,10 @@ public class Huffman {
         
     }
 
+    /** Encodes a string into binary using the encodeMap
+     * Precondition: encodeMap has been filled in
+     * Postcondition: returnString is a string of binary digits
+     */
     public static String encodeString(String inputString) {
         String returnString = "";
         for (int i = 0; i < inputString.length(); i++) {
@@ -53,6 +61,9 @@ public class Huffman {
         return returnString;
     }
 
+    /** Returns a file as a single String
+     * Precondition: Scanner input is properly initialized
+     */
     public static String readFile(Scanner input) {
         String output = "";
         while (input.hasNextLine()) {
@@ -60,6 +71,11 @@ public class Huffman {
         }
         return output;
     }
+
+    /** Decodes a string of binary digits using the decodeMap
+     * Precondition: decodeMap has been filled in
+     * Precondition: String encoded is a string of binary digits
+     */
     public static String decodeString(String encoded){
         String output = "";
         while(encoded.length() > 0){
@@ -73,6 +89,10 @@ public class Huffman {
         }
         return output;
     }
+
+    /** Returns a hashTable of character as keys and integers where the 
+     * integer is the frequency that the character apears in String input
+     */
     public static HashTable<Character, Integer> frequencyCount(String input){
         HashTable<Character, Integer> frequencyTable = new HashTable<Character, Integer>(17);
         for(char c : input.toCharArray()){
@@ -89,6 +109,9 @@ public class Huffman {
         return frequencyTable;
     }
 
+    /** Returns a heap of Nodes with priority based on their frequency according to HashTable frequency.
+     * Postcondition: all Nodes in the heap are leaves
+     */
     public static Heap<Node, Integer> leafHeap(HashTable<Character, Integer> frequency){
         Heap<Node, Integer> output = new Heap<Node, Integer>();
 
@@ -99,6 +122,10 @@ public class Huffman {
         }
         return output;
     }
+
+    /** Fills in encodeMap and decodeMap based on the input Huffman coding tree
+     * Precondition: Node tree is a proper Huffman coding tree
+     */
     public static void makeHashMaps(Node tree){
         makeHashMaps(tree, "");
     }
@@ -115,6 +142,9 @@ public class Huffman {
         }
     }
 
+    /** Returns a node that is the root of a Huffman coding tree of the leaves in heap.
+     * Precondition: heap is a properly initialized forest of nodes with priority based on their frequency.
+     */
     public static Node buildHuffmanTree(Heap<Node, Integer> heap) {
         while (heap.size() > 1) {
             Node left = heap.poll();
@@ -125,14 +155,15 @@ public class Huffman {
         return heap.poll();
     }
 
-    //
 
+    /** Class node for building Huffman trees. */
     public static class Node {
         public char character;
         public Node right;
         public Node left;
         public int frequency;
 
+        // Constructor for leaf nodes
         public Node(char newCharacter, int newFrequency) {
             character = newCharacter;
             right = null;
@@ -140,6 +171,7 @@ public class Huffman {
             frequency = newFrequency;
         }
 
+        // Constructor for non-leaves
         public Node(Node newLeft, Node newRight, int newFrequency) {
             right = newRight;
             left = newLeft;
